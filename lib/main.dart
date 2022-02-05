@@ -29,16 +29,27 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  Color _color = Colors.black;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
+      if (_counter >= 0) {
+        _color = Colors.black;
+      } else {
+        _color = Colors.red;
+      }
     });
   }
 
   void _decrimentCounter() {
     setState(() {
       _counter--;
+      if (_counter >= 0) {
+        _color = Colors.black;
+      } else {
+        _color = Colors.red;
+      }
     });
   }
 
@@ -57,7 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: TextStyle(
+                fontSize: 20,
+                color: _color,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
