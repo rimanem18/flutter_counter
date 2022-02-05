@@ -34,34 +34,38 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
     setState(() {
       _counter++;
-      if (_counter >= 0) {
-        _color = Colors.black;
-      } else {
-        _color = Colors.red;
-      }
     });
   }
 
   void _decrimentCounter() {
     setState(() {
       _counter--;
-      if (_counter >= 0) {
-        _color = Colors.black;
-      } else {
-        _color = Colors.red;
-      }
     });
   }
 
   void _resetCounter() {
     setState(() {
       _counter = 0;
-      _color = Colors.black;
+    });
+  }
+
+  void _assignCounter(String value) {
+    if (value == '') return;
+
+    setState(() {
+      _counter = int.parse(value);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // リビルドのたびに数字を確認して色を変える
+    if (_counter >= 0) {
+      _color = Colors.black;
+    } else {
+      _color = Colors.red;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -105,7 +109,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ],
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: '数字を直接入力',
+                ),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  _assignCounter(value);
+                },
+              ),
+            ),
           ],
         ),
       ),
