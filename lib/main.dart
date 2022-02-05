@@ -53,6 +53,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _resetCounter() {
+    setState(() {
+      _counter = 0;
+      _color = Colors.black;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,6 +95,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: ElevatedButton(
                     onPressed: _decrimentCounter,
                     child: const Text('-'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: _resetCounter,
+                    child: const Text('Reset'),
                   ),
                 ),
               ],
